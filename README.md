@@ -5,3 +5,5 @@ Installation: pip install [library name] <br>
 Changelog: <br>
 v1.0 First release <br>
 This only contain a small spam challenge and a launch pad, not too much
+v1.1 Color update <br>
+This adds a color picker
