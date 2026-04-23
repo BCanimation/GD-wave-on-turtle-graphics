@@ -1,4 +1,5 @@
 # GD-wave-on-turtle-graphics
+![Gameplay](Gameplay.png)
 Making the geometry dash wave gamemode on python turtle graphics <br>
 
 External libraries used: Pillow<br>
