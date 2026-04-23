@@ -4,9 +4,11 @@ Making the geometry dash wave gamemode on python turtle graphics <br>
 External libraries used: Pillow<br>
 Installation: pip install [library name] <br>
 
+
 <h3>Allowed color values:</h3><br>
 the ones listed here: https://cs111.wellesley.edu/reference/colors<br>
 , hex color codes, and rgb codes.<br>
+
 
 <h3>Changelog:</h3> <br>
 v1.0 First release <br>
