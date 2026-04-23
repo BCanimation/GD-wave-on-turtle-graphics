@@ -5,12 +5,12 @@ External libraries used: Pillow<br>
 Installation: pip install [library name] <br>
 
 
-<h3>Allowed color values:</h3><br>
+##Allowed color values:<br>
 the ones listed here: https://cs111.wellesley.edu/reference/colors<br>
 , hex color codes, and rgb codes.<br>
 
 
-<h3>Changelog:</h3> <br>
+##Changelog: <br>
 v1.0 First release <br>
 This only contain a small spam challenge and a launch pad, not too much <br>
 v1.1 Color update <br>
