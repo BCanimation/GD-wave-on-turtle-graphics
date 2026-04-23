@@ -4,8 +4,8 @@ External libraries used: Pillow<br>
 Installation: pip install [library name] <br>
 Changelog: <br>
 v1.0 First release <br>
-This only contain a small spam challenge and a launch pad, not too much
+This only contain a small spam challenge and a launch pad, not too much <br>
 v1.1 Color update <br>
-This adds a color picker
+This adds a color picker<br>
 v1.1.1 Color error screen <br>
-Added so that you will stop being a dumb idiot and enter a color that doesnt exist in python
+Added so that you will stop being a dumb idiot and enter a color that doesnt exist in python<br>
