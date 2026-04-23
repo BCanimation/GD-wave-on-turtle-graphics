@@ -12,3 +12,5 @@ v1.1 Color update <br>
 This adds a color picker<br>
 v1.1.1 Color error screen <br>
 Added so that you will stop being a dumb idiot and enter a color that doesnt exist in python<br>
+v1.1.2 Bugfixes<br>
+Small bugfixes nobody gaf about<br>
