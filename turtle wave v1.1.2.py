@@ -1,11 +1,21 @@
 import turtle as tr
 import tkinter as tk
+import random
+import pygame as pg
+pg.mixer.init()
+bgmlist=["Phobos.mp3","The Prototype.mp3","Nuke Powder.mp3"]
 root = tk.Tk()
 stat=tk.Label(root,text="0",font=("Arial",20))
 cps=tk.Label(root,text="NA",font=("Arial",20))
 colrr=tk.Label(root,text="Invalid Color, Loser!",font=("Arial",35),fg="red")
 colrrdes=tk.Label(root,text="Please stop being a delulu and think of colors\nthat doesnt exist(or at least in python)to continue playing\n(nullscapes cbf blocker ahh error message)",font=("Arial",11),fg="red")
-def game(icon,colour):
+def game(icon,colour,bgm):
+    bgmi=pg.mixer.Sound(bgm)
+    di=pg.mixer.Sound(r"audios\\death.mp3")
+    channel = bgmi.play()
+    def on_close():
+        channel.stop()
+        tr.bye()
     seconds=0
     screen = tr.Screen()
     space_pressed = False
@@ -33,6 +43,8 @@ def game(icon,colour):
         nonlocal gameover
         x,y=t.position()
         if gameover:
+            dc=di.play()
+            channel.stop()
             return
         def centerv():
             screen.setworldcoordinates(x-size,-size,x+size,size)
@@ -85,12 +97,20 @@ def game(icon,colour):
             t.clear()
             gameover=True
         screen.update()
+    screen.getcanvas().winfo_toplevel().protocol("WM_DELETE_WINDOW", on_close)
     screen.listen()
     screen.onkeypress(up, "space")
     screen.onkeyrelease(down, "space")
     move()
     screen.mainloop()
 def launch(icon,colour):
+    def randomBGM():
+        return r"audios\\{}".format(random.choice(bgmlist))
+    def randomCol():
+        red=random.randint(0,255)
+        green=random.randint(0,255)
+        blue=random.randint(0,255)
+        return "#{:02X}{:02X}{:02X}".format(red,green,blue)
     launched=tk.Label(root,text="Game Launched!",font=("Arial",40))
     sub=tk.Label(root,text="Time survived",font=("Arial",15))
     tit.pack_forget()
@@ -98,13 +118,17 @@ def launch(icon,colour):
     ins.pack_forget()
     option_menu.pack_forget()
     col.pack_forget()
+    coldes.pack_forget()
     lb.pack_forget()
     try:
-        launched.pack()
-        sub.pack()
-        stat.pack()
-        cps.pack()
-        game(icon,colour)
+        if colour=="":
+            game(icon,randomCol(),randomBGM())
+        else:
+            launched.pack()
+            sub.pack()
+            stat.pack()
+            cps.pack()
+            game(icon,colour,randomBGM())
     except tr.TurtleGraphicsError as e:
         if "bad color string" in str(e):
             colrr.pack()
@@ -122,12 +146,14 @@ des = tk.Label(root, text="The wave gamemode from geometry dash on turtle graphi
 ins = tk.Label(root, text="Click s to start,use space to control the wave,select icon below", font=("Arial", 11))
 selected = tk.StringVar(value=titleso[0])
 option_menu = tk.OptionMenu(root, selected, *titleso)
+coldes=tk.Label(root,text="Color here (if left empty a random color will be used)",font=("Arial",10))
 col=tk.Entry(root,font=("Arial", 10))
 lb = tk.Button(root, text="Launch", font=("Arial", 30), bg="red", command=lambda: launch(selected.get(),col.get()))
 tit.pack()
 des.pack()
 ins.pack()
 option_menu.pack()
+coldes.pack()
 col.pack()
 lb.pack()
 root.mainloop()
