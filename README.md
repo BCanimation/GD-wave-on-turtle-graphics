@@ -22,3 +22,5 @@ v1.1.2 Bugfixes<br>
 Small bugfixes nobody gaf about, 3rd and prob last update today<br>
 v1.2 Music and color update
 Added music and audio, random color will be used if the color field is left empty
+v1.2.1 Exe added
+Added exe for automatic library installation
