@@ -104,7 +104,7 @@ def game(icon, colour, bgm):
         space_pressed = False
         
     def move():
-        global highscore, timer_id  # <-- FIXED: Explicit scoping for BOTH active global variables
+        global highscore, timer_id 
         nonlocal s1y, s2y
         nonlocal seconds
         nonlocal gameover
@@ -209,7 +209,7 @@ def launch(icon, colour):
         red = random.randint(0, 255)
         green = random.randint(0, 255)
         blue = random.randint(0, 255)
-        return "#{:02X}{:02X}{:02X}".format(red, green, blue) # FIXED formatting configuration here
+        return "#{:02X}{:02X}{:02X}".format(red, green, blue)
     launched = tk.Label(root, text="Game Launched!", font=("Arial", 40))
     sub = tk.Label(root, text="Time survived", font=("Arial", 15))
     tit.pack_forget()
