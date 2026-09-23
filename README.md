@@ -20,10 +20,10 @@ v1.1.1 Color error screen <br>
 Added so that you will stop being a dumb idiot and enter a color that doesnt exist in python<br>
 v1.1.2 Bugfixes<br>
 Small bugfixes nobody gaf about, 3rd and prob last update today<br>
-v1.2 Music and color update
+v1.2 Music and color update <br>
 Added music and audio, random color will be used if the color field is left empty
-v1.2.1 Exe added
+v1.2.1 Exe added<br>
 Added exe for automatic library installation
-v1.3 Score Saving
+v1.3 Score Saving<br>
 Added score saving and highscore display
 Removed background music for some issues regarding pygame
