@@ -24,3 +24,6 @@ v1.2 Music and color update
 Added music and audio, random color will be used if the color field is left empty
 v1.2.1 Exe added
 Added exe for automatic library installation
+v1.3 Score Saving
+Added score saving and highscore display
+Removed background music for some issues regarding pygame
