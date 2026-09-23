@@ -21,9 +21,9 @@ Added so that you will stop being a dumb idiot and enter a color that doesnt exi
 v1.1.2 Bugfixes<br>
 Small bugfixes nobody gaf about, 3rd and prob last update today<br>
 v1.2 Music and color update <br>
-Added music and audio, random color will be used if the color field is left empty
+Added music and audio, random color will be used if the color field is left empty<br>
 v1.2.1 Exe added<br>
-Added exe for automatic library installation
+Added exe for automatic library installation<br>
 v1.3 Score Saving<br>
-Added score saving and highscore display
-Removed background music for some issues regarding pygame
+Added score saving and highscore display<br>
+Removed background music for some issues regarding pygame<br>
