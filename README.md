@@ -18,7 +18,7 @@ v1.1 Color update <br>
 This adds a color picker<br>
 v1.1.1 Color error screen <br>
 Added so that you will stop being a dumb idiot and enter a color that doesnt exist in python<br>
-v1.1.2 Bugfixes<br>
+v1.1.2 Bugfixe 1s<br>
 Small bugfixes nobody gaf about, 3rd and prob last update today<br>
 v1.2 Music and color update <br>
 Added music and audio, random color will be used if the color field is left empty<br>
@@ -27,3 +27,5 @@ Added exe for automatic library installation<br>
 v1.3 Score Saving<br>
 Added score saving and highscore display<br>
 Removed background music for some issues regarding pygame<br>
+v1.3.1 Better time<br>
+Using perf_counter instead of the dumb +0.21 per tick<br>
