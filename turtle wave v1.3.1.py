@@ -7,7 +7,6 @@ import os
 import sys
 from time import perf_counter
 from datetime import datetime
-
 highscore = 0
 if getattr(sys, "_MEIPASS", None):
     base_dir = sys._MEIPASS
@@ -18,9 +17,7 @@ scores = []
 timer_id = None
 pg.mixer.init()
 bgmlist = ["Phobos.mp3", "The Prototype.mp3", "Nuke Powder.mp3"]
-
 root = tk.Tk()
-
 def load_data():
     global highscore
     global scores
@@ -30,22 +27,19 @@ def load_data():
     try:
         with open(savefile, "r") as file:
             scores = json.load(file)
-            if not scores:
-                highscore = 0
-                return
-            highscore = scores[0]["score"]
+        if not scores:
+            highscore = 0
+            return
+        highscore = scores[0]["score"]
     except (json.JSONDecodeError, KeyError, IndexError):
         highscore = 0
         return
-
 load_data()
-
 stat = tk.Label(root, text="0", font=("Arial", 20))
 hsl = tk.Label(root, text="High Score: {}".format(highscore), font=("Arial", 20))
 cps = tk.Label(root, text="NA", font=("Arial", 20))
 colrr = tk.Label(root, text="Invalid Color, Loser!", font=("Arial", 35), fg="red")
 colrrdes = tk.Label(root, text="Please stop being a delulu and think of colors\nthat doesnt exist(or at least in python)to continue playing\n(nullscapes cbf blocker ahh error message)", font=("Arial", 11), fg="red")
-
 def save(score):
     global scores
     global highscore
@@ -59,19 +53,16 @@ def save(score):
     with open(savefile, "w") as file:
         json.dump(top_scores, file, indent=4)
     print("DEBUG: SCORES SAVED")
-
 def game(icon, colour, bgm):
     global timer_id
     bgmi=pg.mixer.Sound(bgm)
-    di=pg.mixer.Sound(r"audios\\death.mp3")
+    di=pg.mixer.Sound(os.path.join("audios", "death.mp3"))
     channel = bgmi.play()
-
     begintime=perf_counter()
     def on_close():
         global timer_id
         print("DEBUG: PLAYER HAVE A SKILL ISSUE")
         channel.stop()
-
         if timer_id is not None:
             try:
                 screen.getcanvas().after_cancel(timer_id)
@@ -81,7 +72,6 @@ def game(icon, colour, bgm):
             tr.bye()
         except Exception:
             pass
-
     seconds = 0
     screen = tr.Screen()
     space_pressed = False
@@ -97,34 +87,28 @@ def game(icon, colour, bgm):
     size = 200
     s1y = size - 50
     s2y = -size + 50
-
     def up():
         nonlocal space_pressed
         space_pressed = True
     def down():
         nonlocal space_pressed
         space_pressed = False
-
     def move():
         global highscore, timer_id
         nonlocal s1y, s2y
         nonlocal seconds
         nonlocal gameover
-
         try:
             x, y = t.position()
         except (tr.Terminator, tk.TclError):
             return
-
         if gameover:
             return
-
         def centerv():
             try:
                 screen.setworldcoordinates(x - size, -size, x + size, size)
             except (tr.Terminator, tk.TclError):
                 pass
-
         if space_pressed:
             t.setheading(45)
             tra.setheading(45)
@@ -133,6 +117,8 @@ def game(icon, colour, bgm):
                 tra.sety(size)
                 t.setheading(0)
                 tra.setheading(0)
+            t.forward(5)
+            tra.forward(5)
         else:
             handled = False
             if y <= -size:
@@ -144,13 +130,11 @@ def game(icon, colour, bgm):
             if not handled:
                 t.setheading(315)
                 tra.setheading(315)
-
-        t.forward(5)
-        tra.forward(5)
+                t.forward(5)
+                tra.forward(5)
         s1.setx(x)
         s2.setx(x)
         centerv()
-
         t.shape(icon)
         t.color(colour, colour)
         t.pensize(7)
@@ -167,13 +151,11 @@ def game(icon, colour, bgm):
         s2y += .1
         s1.pu()
         s2.pu()
-
         if not gameover:
             try:
                 timer_id = screen.getcanvas().after(10, move)
             except (tr.Terminator, tk.TclError):
                 return
-
         try:
             endtime=perf_counter()
             seconds=endtime-begintime
@@ -182,8 +164,9 @@ def game(icon, colour, bgm):
                 hsl.config(text="High Score: {}".format(highscore))
             else:
                 hsl.config(text="High Score: 0")
-
             if t.distance(s1) <= 20 or t.distance(s2) <= 20:
+                channel.stop()
+                di.play()
                 t.hideturtle()
                 tra.hideturtle()
                 t.clear()
@@ -194,7 +177,6 @@ def game(icon, colour, bgm):
             screen.update()
         except (tr.Terminator, tk.TclError):
             pass
-
     screen.getcanvas().winfo_toplevel().protocol("WM_DELETE_WINDOW", on_close)
     screen.listen()
     screen.onkeypress(up, "space")
@@ -204,7 +186,6 @@ def game(icon, colour, bgm):
         screen.mainloop()
     except (tr.Terminator, tk.TclError):
         pass
-
 def launch(icon, colour):
     def randomBGM():
         return r"audios\\{}".format(random.choice(bgmlist))
@@ -241,16 +222,15 @@ def launch(icon, colour):
         if "bad color string" in str(e):
             colrr.pack()
             colrrdes.pack()
-            try:
-                tr.bye()
-            except Exception:
-                pass
-            launched.pack_forget()
-            sub.pack_forget()
-            stat.pack_forget()
-            cps.pack_forget()
-            hsl.pack_forget()
-
+        try:
+            tr.bye()
+        except Exception:
+            pass
+        launched.pack_forget()
+        sub.pack_forget()
+        stat.pack_forget()
+        cps.pack_forget()
+        hsl.pack_forget()
 titleso = ["turtle", "arrow", "triangle", "circle", "square"]
 root.geometry("500x200")
 root.title("GD wave on turtle graphics")
@@ -262,7 +242,6 @@ option_menu = tk.OptionMenu(root, selected, *titleso)
 coldes = tk.Label(root, text="Color here (if left empty a random color will be used)", font=("Arial", 10))
 col = tk.Entry(root, font=("Arial", 10))
 lb = tk.Button(root, text="Launch", font=("Arial", 30), bg="red", command=lambda: launch(selected.get(), col.get()))
-
 tit.pack()
 des.pack()
 ins.pack()
